@@ -35,7 +35,6 @@ export function SeparePairs() {
             }
         }
         setPairs(newPairs);
-        console.log(newPairs);
     }
 
     return (

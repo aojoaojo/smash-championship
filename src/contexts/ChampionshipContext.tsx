@@ -6,10 +6,11 @@ export interface Person {
   pastPairs?: string[];
 }
 
-interface Pair {
+export interface Pair {
   person: Person;
   pair: Person;
   points: number;
+  numberOfGames?: number;
 }
 
 interface ChampionshipContextData {
