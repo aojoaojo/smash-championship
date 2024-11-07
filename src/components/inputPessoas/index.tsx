@@ -16,14 +16,15 @@ export function InputPessoas() {
 
     return (
         <div className='text-white'>
-            <form className="input-pessoas">
+            <h1>Adicionar Pessoas</h1>
+            <form className="input-pessoas d-flex flex-column">
                 <input type="text" autoFocus placeholder="Nome" />
                 <button onClick={addPerson}>Adicionar</button>
                 <button onClick={cleanPeople}>limpar lista</button>
-                <div>{people.length > 0 ? people.length : 'Lista vazia'}</div>
+                <div >número de pessoas: {people.length > 0 ? people.length : '0'}</div>
             </form>
             {people.length > 0 && (
-                <table className='table m-3'>
+                <table className='table'>
                     <thead>
                         <tr>
                             <th>Nome</th>

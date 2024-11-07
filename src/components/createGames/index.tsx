@@ -58,7 +58,7 @@ export function CreateGames() {
                     {pairsGaming[1].person.name} e {pairsGaming[1].pair.name}
                 </div>
             )}
-            {pairsGaming.length === 2 && ( // Verifica se pairsGaming tem os pares antes de renderizar o select
+            {pairsGaming.length === 2 && (
                 <div>
                     <h3 className="mt-3">quem ganhou?</h3>
                     <form>

@@ -38,11 +38,12 @@ export function SeparePairs() {
     }
 
     return (
-        <div>
+        <div className="text-white">
+            <h1>Separar em duplas</h1>
             <button onClick={separe} title="Separa as duplas">Separe</button>
             <button onClick={letPeoplePair} title="Adiciona um bot para que a quantidade de pessoas seja par.">Add Bot</button>
             {pairs.length > 0 && (
-                <table className="table m-3">
+                <table className="table">
                     <thead>
                         <tr>
                             <th>Person</th>
