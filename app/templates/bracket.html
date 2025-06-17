@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chaves</title>
+</head>
+<body>
+    <h1>Chaves do Torneio ({{ session.get('tournament_type') }})</h1>
+    <ul>
+        {% for team in teams %}
+        {% set idx = loop.index0 %}
+        <li>{{ team[0] }} + {{ team[1] }} - Ban: {{ picks.get(team[0] ~ '_' ~ team[1])['ban'] }}; Pick: {{ picks.get(team[0] ~ '_' ~ team[1])['pick'] }}</li>
+        {% endfor %}
+    </ul>
+    <a href="/results">Registrar Resultados</a>
+</body>
+</html>

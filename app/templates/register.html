@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cadastro</title>
+</head>
+
+<body>
+    <h1>Cadastro de Jogadores</h1>
+    <form method="post">
+        <input type="text" name="name" placeholder="Nome do jogador" required>
+        <button type="submit">Adicionar</button>
+    </form>
+    <ul>
+        {% for player in players %}
+        <li>{{ player }}</li>
+        {% endfor %}
+    </ul>
+    <a href="/generate_teams">Gerar times</a>
+
+    <a href="/">Voltar</a>
+</body>
+
+</html>

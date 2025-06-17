@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ban e Pick</title>
+</head>
+<body>
+    <h1>Ban e Pick de Campeões</h1>
+    <form method="post">
+        {{ teams }}
+        {% for team in teams %}
+        {% set idx = loop.index0 %}
+        <fieldset>
+            <legend>Dupla: {{ team[0] }} + {{ team[1] }}</legend>
+            <label>Ban:</label>
+            <select name="ban_{{ idx }}" required>
+                {% for c in champions %}
+                <option value="{{ c }}">{{ c }}</option>
+                {% endfor %}
+            </select>
+            <label>Pick:</label>
+            <select name="pick_{{ idx }}" required>
+                {% for c in champions %}
+                <option value="{{ c }}">{{ c }}</option>
+                {% endfor %}
+            </select>
+        </fieldset>
+        {% endfor %}
+        <button type="submit">Confirmar Picks</button>
+    </form>
+    <a href="/">Voltar</a>
+</body>
+</html>

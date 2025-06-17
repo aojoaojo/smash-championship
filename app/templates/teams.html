@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Duplas Geradas</title>
+</head>
+
+<body>
+    <h1>Duplas Aleatórias (sem repetição)</h1>
+    <ul>
+        {% for team in teams %}
+        <li>{{ team[0] }} + {{ team[1] }}</li>
+        {% endfor %}
+    </ul>
+    <h3>{{ used_teams }}</h3>
+    <a href="/">Voltar</a>
+</body>
+
+</html>
