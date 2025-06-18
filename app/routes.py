@@ -4,7 +4,8 @@ from .utils import generate_unique_teams
 main = Blueprint('main', __name__)
 
 # Estado global
-players = ['joao', 'brisa', 'jairo']
+current_teams = []
+players = ['Joao', 'Brisa', 'Jairo']
 used_teams = set()
 will_play_type = None  # armazenará tipo de campeonato
 team_picks = {}  # { team: {'ban': str, 'pick': str} }
@@ -14,6 +15,7 @@ tournament_types = ["Double Elimination", "Swiss"]
 def printar_dados():
     print("---------------------------------------------")
     print("players:", players)
+    print("current_teams:", current_teams)
     print("used_teams:", used_teams)
     print("will_play_type:", will_play_type)
     print("team_picks:", team_picks)
@@ -22,6 +24,7 @@ def printar_dados():
 
 @main.route("/")
 def index():
+    current_teams = []
     printar_dados()
     return render_template("index.html")
 
@@ -37,13 +40,15 @@ def register():
 
 @main.route("/generate_teams")
 def generate_teams():
-    printar_dados()
-
     if len(players) < 2:
         return "Cadastre ao menos 2 jogadores para gerar duplas."
 
-    teams = generate_unique_teams(players, used_teams)
-    return render_template("teams.html", teams=teams)
+    temp = generate_unique_teams(players, used_teams)
+    for i in temp:
+        current_teams.append(i)
+    printar_dados()
+
+    return render_template("teams.html", teams=current_teams)
 
 @main.route("/setup", methods=["GET", "POST"])
 def setup():
@@ -61,16 +66,16 @@ def setup():
 def ban_pick():
     printar_dados()
 
-    teams = session.get('teams', [])
     if request.method == "POST":
-        for idx, team in enumerate(teams):
+        for idx, team in enumerate(current_teams):
             team_key = f"{'_'.join(team)}"
             ban = request.form.get(f"ban_{idx}")
-            pick = request.form.get(f"pick_{idx}")
-            team_picks[team_key] = {'ban': ban, 'pick': pick}
+            pick1 = request.form.get(f"pick1_{idx}")
+            pick2 = request.form.get(f"pick2_{idx}")
+            team_picks[team_key] = {'ban': ban, 'pick1': pick1, 'pick2': pick2}
         session['picks'] = team_picks
         return redirect(url_for('main.show_bracket'))
-    return render_template("ban_pick.html", teams=teams, champions=champions)
+    return render_template("ban_pick.html", teams=current_teams, champions=champions)
 
 @main.route("/bracket")
 def show_bracket():

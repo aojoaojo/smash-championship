@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Ban e Pick</title>
 </head>
+
 <body>
     <h1>Ban e Pick de Campeões</h1>
     <form method="post">
-        {{ teams }}
         {% for team in teams %}
         {% set idx = loop.index0 %}
         <fieldset>
@@ -18,7 +19,14 @@
                 {% endfor %}
             </select>
             <label>Pick:</label>
-            <select name="pick_{{ idx }}" required>
+            {{ team[0] }}:
+            <select name="pick1_{{ idx }}" required>
+                {% for c in champions %}
+                <option value="{{ c }}">{{ c }}</option>
+                {% endfor %}
+            </select>
+            {{ team[1] }}:
+            <select name="pick2_{{ idx }}" required>
                 {% for c in champions %}
                 <option value="{{ c }}">{{ c }}</option>
                 {% endfor %}
@@ -29,4 +37,5 @@
     </form>
     <a href="/">Voltar</a>
 </body>
+
 </html>
